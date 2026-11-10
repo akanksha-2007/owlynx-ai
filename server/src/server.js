@@ -3,6 +3,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import { env } from './config/env.js'
 import healthRoutes from './routes/health.routes.js'
+import transcribeRoutes from './routes/transcribe.routes.js'
 import { ApiError, notFound, errorHandler } from './middleware/errorHandler.js'
 
 const app = express()
@@ -20,6 +21,7 @@ app.use(cors(corsOptions))
 app.use(express.json({ limit: '100kb' }))
 
 app.use('/api/health', healthRoutes)
+app.use('/api/transcribe', transcribeRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
